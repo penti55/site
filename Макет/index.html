@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Панель управления КФХ</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="authenticated">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">КФХ</div>
+                <div>
+                    <div class="system-title">Система управления КФХ</div>
+                    <div style="font-size: 0.85rem; opacity: 0.8;">
+                        Информационная система фермерских хозяйств
+                    </div>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                </div>
+                <div class="user-avatar">ИИ</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+				<nav>
+					<!-- ===== Раздел «Основное» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Основное</div>
+						<!-- Активный класс ставьте только для той страницы, на которой вы находитесь -->
+						<a href="index.html"            class="nav-item active"><span class="nav-icon">■</span> Панель управления</a>
+						<a href="khozyaystva.html"      class="nav-item"><span class="nav-icon">▲</span> Хозяйства КФХ</a>
+						<a href="produkciya.html"       class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">★</span> Запросы</a>
+					</div>
+
+					<!-- ===== Раздел «Аналитика» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Аналитика</div>
+						<a href="statistika.html"       class="nav-item"><span class="nav-icon">▬</span> Статистика</a>
+						<a href="otchety.html"          class="nav-item"><span class="nav-icon">◆</span> Отчёты</a>
+						<a href="analitika.html"        class="nav-item"><span class="nav-icon">◊</span> Аналитика</a>
+					</div>
+
+					<!-- ===== Раздел «Управление» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Управление</div>
+						<a href="polzovateli.html"      class="nav-item"><span class="nav-icon">◐</span> Пользователи</a>
+						<a href="dokumenty.html"        class="nav-item"><span class="nav-icon">□</span> Документы</a>
+						<a href="klassifikaciya_produkcii.html" class="nav-item">
+							<span class="nav-icon">◯</span> Классификация продукции
+						</a>
+						<a href="klassifikaciya_zaprosov.html" class="nav-item">
+							<span class="nav-icon">◇</span> Классификация запросов
+						</a>
+						<a href="segments_kfh.html"     class="nav-item"><span class="nav-icon">◂</span> Сегменты КФХ</a>
+						<a href="specializacii.html"    class="nav-item"><span class="nav-icon">▸</span> Специализации</a>
+					</div>
+				</nav>
+			</aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1 class="page-title">Панель управления</h1>
+                <p class="page-subtitle">Обзор состояния системы управления КФХ</p>
+            </div>
+            <div class="content-body">
+                <!-- Статистика -->
+                <div class="dashboard-grid">
+                    <div class="stats-card">
+                        <div class="stats-header">
+                            <div>
+                                <div class="stats-value">1,247</div>
+                                <div class="stats-label">Зарегистрированных КФХ</div>
+                            </div>
+                            <div class="stats-icon blue">▲</div>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-header">
+                            <div>
+                                <div class="stats-value">8,934</div>
+                                <div class="stats-label">Видов продукции</div>
+                            </div>
+                            <div class="stats-icon green">●</div>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-header">
+                            <div>
+                                <div class="stats-value">156</div>
+                                <div class="stats-label">Отчетов за месяц</div>
+                            </div>
+                            <div class="stats-icon orange">◆</div>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-header">
+                            <div>
+                                <div class="stats-value">2,341</div>
+                                <div class="stats-label">Пользователей</div>
+                            </div>
+                            <div class="stats-icon purple">◐</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Графики-заглушки -->
+                <div class="chart-section">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Динамика регистрации КФХ</h3>
+                        <div class="chart-placeholder">График регистрации КФХ</div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Распределение по специализации</h3>
+                        <div class="chart-placeholder">Круговая диаграмма специализаций</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

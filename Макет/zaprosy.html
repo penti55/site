@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Запросы | Панель управления КФХ</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="authenticated">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">КФХ</div>
+                <div>
+                    <div class="system-title">Система управления КФХ</div>
+                    <div style="font-size: 0.85rem; opacity: 0.8;">
+                        Информационная система фермерских хозяйств
+                    </div>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                </div>
+                <div class="user-avatar">ИИ</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <nav>
+                <!-- Раздел «Основное» -->
+                <div class="nav-section">
+                    <div class="nav-title">Основное</div>
+                    <a href="index.html" class="nav-item"><span class="nav-icon">■</span> Панель управления</a>
+                    <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">▲</span> Хозяйства КФХ</a>
+                    <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+                    <a href="zaprosy.html" class="nav-item active"><span class="nav-icon">★</span> Запросы</a>
+                </div>
+
+                <!-- Раздел «Аналитика» -->
+                <div class="nav-section">
+                    <div class="nav-title">Аналитика</div>
+                    <a href="statistika.html" class="nav-item"><span class="nav-icon">▬</span> Статистика</a>
+                    <a href="otchety.html" class="nav-item"><span class="nav-icon">◆</span> Отчёты</a>
+                    <a href="analitika.html" class="nav-item"><span class="nav-icon">◊</span> Аналитика</a>
+                </div>
+
+                <!-- Раздел «Управление» -->
+                <div class="nav-section">
+                    <div class="nav-title">Управление</div>
+                    <a href="polzovateli.html" class="nav-item"><span class="nav-icon">◐</span> Пользователи</a>
+                    <a href="dokumenty.html" class="nav-item"><span class="nav-icon">□</span> Документы</a>
+                    <a href="klassifikaciya_produkcii.html" class="nav-item">
+                        <span class="nav-icon">◯</span> Классификация продукции
+                    </a>
+                    <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                        <span class="nav-icon">◇</span> Классификация запросов
+                    </a>
+                    <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">◂</span> Сегменты КФХ</a>
+                    <a href="specializacii.html" class="nav-item"><span class="nav-icon">▸</span> Специализации</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1 class="page-title">Запросы</h1>
+                <p class="page-subtitle">Создание и просмотр пользовательских запросов</p>
+            </div>
+            <div class="content-body">
+                <div class="table-section">
+                    <div class="table-header">
+                        <h2 class="table-title">Список запросов</h2>
+                        <button class="btn btn-primary" data-modal-open="modalAddRequest">
+                            Добавить запрос
+                        </button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>№ запроса</th>
+                                    <th>Тип запроса</th>
+                                    <th>Параметры</th>
+                                    <th>Дата создания</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Таблица заполняется динамически или остается пустой как заглушка -->
+                                <tr>
+                                    <td>001</td>
+                                    <td>Количество КФХ по регионам</td>
+                                    <td>Регион: Все; Период: 2025</td>
+                                    <td>2025-06-01</td>
+                                    <td><span class="status-badge status-active">Выполнен</span></td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>Объемы производства</td>
+                                    <td>Продукция: Пшеница; Период: 2024-2025</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="status-badge status-pending">В обработке</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно для добавления запроса -->
+    <div class="modal-overlay" id="modalAddRequest">
+        <div class="modal">
+            <button class="close-btn" data-modal-close>×</button>
+            <h3>Создать новый запрос</h3>
+            <form>
+                <label for="requestType">Тип запроса</label>
+                <select id="requestType" required>
+                    <option value="" disabled selected>Выберите тип запроса</option>
+                    <option value="kfh_count">Количество КФХ по регионам и специализации</option>
+                    <option value="production_volume">Объемы производства продукции</option>
+                    <option value="price_dynamics">Динамика цен на продукцию</option>
+                    <option value="kfh_by_product">КФХ по виду продукции</option>
+                    <option value="kfh_info">Полная информация о КФХ</option>
+                    <option value="avg_prices">Средние цены по видам продукции</option>
+                    <option value="kfh_production">Продукция КФХ по объемам</option>
+                    <option value="kfh_by_specialization">КФХ по специализации в регионе</option>
+                    <option value="kfh_changes">Изменения данных КФХ</option>
+                    <option value="no_reports">КФХ без отчетности</option>
+                    <option value="kfh_comparison">Сравнительный анализ КФХ</option>
+                    <option value="production_forecast">Прогноз производства</option>
+                    <option value="price_trends">Ценовые тренды и аномалии</option>
+                </select>
+
+                <label for="region">Регион</label>
+                <input type="text" id="region" placeholder="Введите регион (если требуется)">
+
+                <label for="period">Период</label>
+                <input type="text" id="period" placeholder="Например, 2024-2025">
+
+                <label for="productType">Вид продукции</label>
+                <input type="text" id="productType" placeholder="Введите вид продукции (если требуется)">
+
+                <label for="kfhId">Код КФХ</label>
+                <input type="text" id="kfhId" placeholder="Введите код КФХ (если требуется)">
+
+                <label for="requestDetails">Дополнительные параметры</label>
+                <textarea id="requestDetails" placeholder="Укажите дополнительные параметры запроса"></textarea>
+
+                <button type="submit" class="btn btn-primary">Создать запрос</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
