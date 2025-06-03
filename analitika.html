@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="authenticated">
+    <div class="app">
+        <!-- Заголовок -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">КФХ</div>
+                    <div>
+                        <div class="system-title">Система управления КФХ</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            Информационная система фермерских хозяйств
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Аналитик</div>
+                    </div>
+                    <div class="user-avatar">ИИ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Сайдбар -->
+            <aside class="sidebar">
+                <nav>
+                    <!-- ===== Раздел «Основное» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Основное</div>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">■</span> Панель управления</a>
+                        <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">▲</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">★</span> Запросы</a>
+                    </div>
+
+                    <!-- ===== Раздел «Аналитика» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Аналитика</div>
+                        <a href="statistika.html" class="nav-item"><span class="nav-icon">▬</span> Статистика</a>
+                        <a href="otchety.html" class="nav-item"><span class="nav-icon">◆</span> Отчёты</a>
+                        <a href="analitika.html" class="nav-item active"><span class="nav-icon">◊</span> Аналитика</a>
+                    </div>
+
+                    <!-- ===== Раздел «Управление» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Управление</div>
+                        <a href="polzovateli.html" class="nav-item"><span class="nav-icon">◐</span> Пользователи</a>
+                        <a href="dokumenty.html" class="nav-item"><span class="nav-icon">□</span> Документы</a>
+                        <a href="klassifikaciya_produkcii.html" class="nav-item">
+                            <span class="nav-icon">◯</span> Классификация продукции
+                        </a>
+                        <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                            <span class="nav-icon">◇</span> Классификация запросов
+                        </a>
+                        <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">◂</span> Сегменты КФХ</a>
+                        <a href="specializacii.html" class="nav-item"><span class="nav-icon">▸</span> Специализации</a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Основное содержимое -->
+            <main class="main-content">
+                <div class="content-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 class="page-title">Аналитика</h1>
+                            <p class="page-subtitle">Список аналитических отчётов</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="modalAddAnalysis">
+                            <span>+</span> Добавить анализ
+                        </button>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <div class="table-section">
+                        <div class="table-header">
+                            <h3 class="table-title">Аналитические отчёты</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID аналитики</th>
+                                    <th>Тип анализа</th>
+                                    <th>Дата анализа</th>
+                                    <th>Результат анализа</th>
+                                    <th>ID продукции</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>201</td>
+                                    <td>Продажи</td>
+                                    <td>01.06.2025</td>
+                                    <td>Рост продаж пшеницы на 5%.</td>
+                                    <td>1001</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>202</td>
+                                    <td>Остатки</td>
+                                    <td>02.06.2025</td>
+                                    <td>Недостаток молока в регионе.</td>
+                                    <td>1002</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>203</td>
+                                    <td>Рентабельность</td>
+                                    <td>03.06.2025</td>
+                                    <td>Птицеводство показывает +8% рентабельности.</td>
+                                    <td>1003</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Модальное окно «Добавить аналитический отчёт» -->
+        <div id="modalAddAnalysis" class="modal-overlay">
+            <div class="modal">
+                <button class="close-btn" data-modal-close>×</button>
+                <h3>Добавить аналитический отчёт</h3>
+                <form>
+                    <label for="analysisType">Тип анализа</label>
+                    <select id="analysisType" required>
+                        <option value="">— Выберите тип —</option>
+                        <option value="Продажи">Продажи</option>
+                        <option value="Остатки">Остатки</option>
+                        <option value="Рентабельность">Рентабельность</option>
+                        <option value="Динамика">Динамика</option>
+                    </select>
+
+                    <label for="analysisDate">Дата анализа</label>
+                    <input type="date" id="analysisDate" required>
+
+                    <label for="analysisResult">Результат анализа</label>
+                    <textarea id="analysisResult" rows="3" style="width: 100%;"></textarea>
+
+                    <label for="productFk">ID продукции</label>
+                    <select id="productFk" required>
+                        <option value="">— Выберите продукцию —</option>
+                        <option value="1001">1001 (Пшеница)</option>
+                        <option value="1002">1002 (Молоко)</option>
+                        <option value="1003">1003 (Яйца)</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
