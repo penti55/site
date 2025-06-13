@@ -23,7 +23,7 @@
                 <div class="user-info">
                     <div>
                         <div style="font-size: 0.9rem;">Иванов И.И.</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Менеджер отчётов</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Аналитик</div>
                     </div>
                     <div class="user-avatar">ИИ</div>
                 </div>
@@ -37,10 +37,10 @@
                     <!-- ===== Раздел «Основное» ===== -->
                     <div class="nav-section">
                         <div class="nav-title">Основное</div>
-                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
                         <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
                         <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
-						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                        <a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
                     </div>
 
                     <!-- ===== Раздел «Аналитика» ===== -->
@@ -55,6 +55,7 @@
                     <div class="nav-section">
                         <div class="nav-title">Управление</div>
                         <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+                        <a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
                         <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
                         <a href="klassifikaciya_produkcii.html" class="nav-item">
                             <span class="nav-icon">●</span> Классификация продукции
@@ -85,12 +86,26 @@
                     <div class="table-section">
                         <div class="table-header">
                             <h3 class="table-title">Список отчётов</h3>
+                            <div class="filters">
+                                <select id="statusFilter">
+                                    <option value="all">Все статусы</option>
+                                    <option value="На проверке">На проверке</option>
+                                    <option value="Проверен">Проверен</option>
+                                    <option value="Отклонен">Отклонен</option>
+                                </select>
+                                <select id="operationTypeFilter">
+                                    <option value="all">Все типы операций</option>
+                                    <option value="Ежемесячный отчёт">Ежемесячный отчёт</option>
+                                    <option value="Ежеквартальный отчёт">Ежеквартальный отчёт</option>
+                                    <option value="Специальный отчёт">Специальный отчёт</option>
+                                </select>
+                            </div>
                         </div>
                         <table class="data-table">
                             <thead>
                                 <tr>
                                     <th>ID отчёта</th>
-                                    <th>Дата верификации</th>
+                                    <th class="sortable">Дата верификации</th>
                                     <th>Статус</th>
                                     <th>Тип операции</th>
                                     <th>ID запроса</th>
@@ -110,6 +125,7 @@
                                             <div class="dropdown-menu">
                                                 <button class="dropdown-item">Редактировать</button>
                                                 <button class="dropdown-item">Удалить</button>
+                                                <button class="dropdown-item" onclick="viewReport('401')">Просмотр</button>
                                             </div>
                                         </div>
                                     </td>
@@ -117,7 +133,7 @@
                                 <tr>
                                     <td>402</td>
                                     <td>01.06.2025</td>
-                                    <td><span class="status-badge status-active">Проверен</span></td>
+                                    <td><span class="status-badge status-approved">Проверен</span></td>
                                     <td>Ежеквартальный отчёт</td>
                                     <td>102</td>
                                     <td>
@@ -126,6 +142,7 @@
                                             <div class="dropdown-menu">
                                                 <button class="dropdown-item">Редактировать</button>
                                                 <button class="dropdown-item">Удалить</button>
+                                                <button class="dropdown-item" onclick="viewReport('402')">Просмотр</button>
                                             </div>
                                         </div>
                                     </td>
@@ -133,7 +150,7 @@
                                 <tr>
                                     <td>403</td>
                                     <td>02.06.2025</td>
-                                    <td><span class="status-badge status-inactive">Отклонен</span></td>
+                                    <td><span class="status-badge status-rejected">Отклонен</span></td>
                                     <td>Специальный отчёт</td>
                                     <td>103</td>
                                     <td>
@@ -142,6 +159,7 @@
                                             <div class="dropdown-menu">
                                                 <button class="dropdown-item">Редактировать</button>
                                                 <button class="dropdown-item">Удалить</button>
+                                                <button class="dropdown-item" onclick="viewReport('403')">Просмотр</button>
                                             </div>
                                         </div>
                                     </td>
@@ -185,8 +203,94 @@
                 </form>
             </div>
         </div>
+
+        <!-- Модальное окно «Просмотр отчёта» -->
+        <div id="modalViewReport" class="modal-overlay">
+            <div class="modal">
+                <button class="close-btn" data-modal-close>×</button>
+                <h3>Подробное содержимое отчёта</h3>
+                <div id="reportDetails">
+                    <!-- Здесь будет отображаться содержимое отчёта -->
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Существующий код для модальных окон, сортировки и фильтров остается без изменений
+            document.querySelectorAll('[data-modal-open]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modalId = btn.getAttribute('data-modal-open');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-modal-close]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const overlay = btn.closest('.modal-overlay');
+                    if (overlay) {
+                        overlay.style.display = 'none';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.style.display = 'none';
+                    }
+                });
+            });
+
+            // Данные отчетов (для прототипа)
+            const reportsData = {
+                '401': {
+                    id: '401',
+                    date: '31.05.2025',
+                    status: 'На проверке',
+                    operationType: 'Ежемесячный отчёт',
+                    requestId: '101',
+                    details: 'Это подробное содержимое отчёта с ID 401. Здесь может быть текст, таблицы, графики и т.д.'
+                },
+                '402': {
+                    id: '402',
+                    date: '01.06.2025',
+                    status: 'Проверен',
+                    operationType: 'Ежеквартальный отчёт',
+                    requestId: '102',
+                    details: 'Это подробное содержимое отчёта с ID 402. Содержит детальную информацию о квартальных показателях.'
+                },
+                '403': {
+                    id: '403',
+                    date: '02.06.2025',
+                    status: 'Отклонен',
+                    operationType: 'Специальный отчёт',
+                    requestId: '103',
+                    details: 'Это подробное содержимое отчёта с ID 403. Отчёт был отклонен по причине...'
+                }
+            };
+
+            // Функция для просмотра подробного содержимого отчета
+            window.viewReport = function(reportId) {
+                const report = reportsData[reportId];
+                if (report) {
+                    const detailsDiv = document.getElementById('reportDetails');
+                    detailsDiv.innerHTML = `
+                        <p><strong>ID отчёта:</strong> ${report.id}</p>
+                        <p><strong>Дата верификации:</strong> ${report.date}</p>
+                        <p><strong>Статус:</strong> ${report.status}</p>
+                        <p><strong>Тип операции:</strong> ${report.operationType}</p>
+                        <p><strong>ID запроса:</strong> ${report.requestId}</p>
+                        <p><strong>Подробное содержимое:</strong> ${report.details}</p>
+                    `;
+                    document.getElementById('modalViewReport').style.display = 'flex';
+                }
+            };
+        });
+    </script>
 </body>
 </html>

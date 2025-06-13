@@ -23,7 +23,7 @@
                 <div class="user-info">
                     <div>
                         <div style="font-size: 0.9rem;">Иванов И.И.</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Менеджер документов</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
                     </div>
                     <div class="user-avatar">ИИ</div>
                 </div>
@@ -37,33 +37,34 @@
                     <!-- ===== Раздел «Основное» ===== -->
                     <div class="nav-section">
                         <div class="nav-title">Основное</div>
-                        <a href="index.html"            class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
-                        <a href="khozyaystva.html"      class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
-                        <a href="produkciya.html"       class="nav-item"><span class="nav-icon">●</span> Продукция</a>
-						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
+                        <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+                        <a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
                     </div>
 
                     <!-- ===== Раздел «Аналитика» ===== -->
                     <div class="nav-section">
                         <div class="nav-title">Аналитика</div>
-                        <a href="statistika.html"       class="nav-item"><span class="nav-icon">●</span> Статистика</a>
-                        <a href="otchety.html"          class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
-                        <a href="analitika.html"        class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+                        <a href="statistika.html" class="nav-item"><span class="nav-icon">●</span> Статистика</a>
+                        <a href="otchety.html" class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+                        <a href="analitika.html" class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
                     </div>
 
                     <!-- ===== Раздел «Управление» ===== -->
                     <div class="nav-section">
                         <div class="nav-title">Управление</div>
-                        <a href="polzovateli.html"      class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
-                        <a href="dokumenty.html"        class="nav-item active"><span class="nav-icon">●</span> Документы</a>
+                        <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+						<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
+                        <a href="dokumenty.html" class="nav-item active"><span class="nav-icon">●</span> Документы</a>
                         <a href="klassifikaciya_produkcii.html" class="nav-item">
                             <span class="nav-icon">●</span> Классификация продукции
                         </a>
                         <a href="klassifikaciya_zaprosov.html" class="nav-item">
                             <span class="nav-icon">●</span> Классификация запросов
                         </a>
-                        <a href="segments_kfh.html"     class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
-                        <a href="specializacii.html"    class="nav-item"><span class="nav-icon">●</span> Специализации</a>
+                        <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+                        <a href="specializacii.html" class="nav-item"><span class="nav-icon">●</span> Специализации</a>
                     </div>
                 </nav>
             </aside>
@@ -85,6 +86,14 @@
                     <div class="table-section">
                         <div class="table-header">
                             <h3 class="table-title">Список документов</h3>
+                            <div class="filters">
+                                <select id="docTypeFilter">
+                                    <option value="all">Все типы</option>
+                                    <option value="Отчёт">Отчёт</option>
+                                    <option value="Договор">Договор</option>
+                                    <option value="Акт">Акт</option>
+                                </select>
+                            </div>
                         </div>
                         <table class="data-table">
                             <thead>
@@ -92,7 +101,7 @@
                                     <th>ID документа</th>
                                     <th>Имя файла</th>
                                     <th>Путь хранения</th>
-                                    <th>Дата загрузки</th>
+                                    <th class="sortable">Дата загрузки</th>
                                     <th>Тип документа</th>
                                     <th>ID отчёта</th>
                                     <th>Действия</th>
@@ -118,10 +127,10 @@
                                 </tr>
                                 <tr>
                                     <td>602</td>
-                                    <td>dogovor.pdf</td>
-                                    <td>/files/contracts/</td>
+                                    <td>otchet_aprel2025.pdf</td>
+                                    <td>/files/reports/</td>
                                     <td>02.06.2025 09:30</td>
-                                    <td>Договор</td>
+                                    <td>Отчет</td>
                                     <td>402</td>
                                     <td>
                                         <div class="dropdown">
@@ -135,10 +144,10 @@
                                 </tr>
                                 <tr>
                                     <td>603</td>
-                                    <td>akt_priemki.pdf</td>
-                                    <td>/files/acts/</td>
+                                    <td>otchet_mart2025.pdf</td>
+                                    <td>/files/reports/</td>
                                     <td>03.06.2025 14:45</td>
-                                    <td>Акт</td>
+                                    <td>Отчет</td>
                                     <td>403</td>
                                     <td>
                                         <div class="dropdown">

@@ -35,7 +35,7 @@
                 <!-- Раздел «Основное» -->
                 <div class="nav-section">
                     <div class="nav-title">Основное</div>
-                    <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
+                    <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
                     <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
                     <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
                     <a href="zaprosy.html" class="nav-item active"><span class="nav-icon">●</span> Запросы</a>
@@ -53,6 +53,7 @@
                 <div class="nav-section">
                     <div class="nav-title">Управление</div>
                     <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+					<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
                     <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
                     <a href="klassifikaciya_produkcii.html" class="nav-item">
                         <span class="nav-icon">●</span> Классификация продукции
@@ -75,6 +76,16 @@
                 <div class="table-section">
                     <div class="table-header">
                         <h2 class="table-title">Список запросов</h2>
+                        <!-- Блок фильтрации по статусу -->
+                        <div class="filter-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <label for="statusFilter" style="font-weight: 500; font-size: 0.9rem;">Фильтр по статусу:</label>
+                            <select id="statusFilter" style="padding: 0.4rem 0.6rem; border-radius: 4px; border: 1px solid #ced4da;">
+                                <option value="all">Все</option>
+                                <option value="Выполнен">Выполнен</option>
+                                <option value="В обработке">В обработке</option>
+                                <option value="Неактивен">Неактивен</option>
+                            </select>
+                        </div>
                         <button class="btn btn-primary" data-modal-open="modalAddRequest">
                             Добавить запрос
                         </button>
@@ -97,7 +108,7 @@
                                     <td>Количество КФХ по регионам</td>
                                     <td>Регион: Все; Период: 2025</td>
                                     <td>2025-06-01</td>
-                                    <td><span class="status-badge status-active">Выполнен</span></td>
+                                    <td><span class="status-badge status-approved">Выполнен</span></td>
                                 </tr>
                                 <tr>
                                     <td>002</td>

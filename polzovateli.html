@@ -34,13 +34,12 @@
       <!-- Сайдбар -->
       <aside class="sidebar">
         <nav>
-          <!-- … навигация … -->
           <div class="nav-section">
             <div class="nav-title">Основное</div>
-            <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
+            <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
             <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
             <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
-			<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+            <a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
           </div>
           <div class="nav-section">
             <div class="nav-title">Аналитика</div>
@@ -51,6 +50,7 @@
           <div class="nav-section">
             <div class="nav-title">Управление</div>
             <a href="polzovateli.html" class="nav-item active"><span class="nav-icon">●</span> Пользователи</a>
+			<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
             <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
             <a href="klassifikaciya_produkcii.html" class="nav-item"><span class="nav-icon">●</span> Классификация продукции</a>
             <a href="klassifikaciya_zaprosov.html" class="nav-item"><span class="nav-icon">●</span> Классификация запросов</a>
@@ -62,7 +62,6 @@
 
       <!-- Основное содержимое -->
       <main class="main-content">
-        <!-- Кнопка «Добавить пользователя» в шапке, чтобы она оставалась видимой -->
         <div class="content-header">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
@@ -75,24 +74,31 @@
           </div>
         </div>
 
-        <!-- Здесь начинаем нашу прокручиваемую таблицу -->
         <div class="content-body">
           <div class="table-wrapper">
             <div class="table-section">
               <div class="table-header">
                 <h3 class="table-title">Список пользователей</h3>
+                <div class="filters">
+                  <select id="farmCodeFilter">
+                    <option value="all">Все КФХ</option>
+                    <option value="КФХ-2024-001">КФХ-2024-001</option>
+                    <option value="КФХ-2024-004">КФХ-2024-004</option>
+                    <option value="КФХ-2024-005">КФХ-2024-005</option>
+                  </select>
+                </div>
               </div>
               <table class="data-table">
                 <thead>
                   <tr>
                     <th>ID пользователя</th>
-                    <th>Фамилия</th>
-                    <th>Имя</th>
-                    <th>Отчество</th>
+                    <th class="sortable">Фамилия</th>
+                    <th class="sortable">Имя</th>
+                    <th class="sortable">Отчество</th>
                     <th>Email</th>
                     <th>Роль</th>
-                    <th>Дата регистрации</th>
-                    <th>Код КФХ</th>
+                    <th class="sortable">Дата регистрации</th>
+                    <th class="sortable">Код КФХ</th>
                     <th>Действия</th>
                   </tr>
                 </thead>
@@ -154,7 +160,6 @@
                       </div>
                     </td>
                   </tr>
-                  <!-- При необходимости добавьте ещё строки -->
                 </tbody>
               </table>
             </div>

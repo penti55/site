@@ -1,70 +1,152 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  // ===== Открытие модального окна =====
-  document.querySelectorAll('[data-modal-open]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modalId = btn.getAttribute('data-modal-open');
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.style.display = 'flex';
-      }
+    // ===== Открытие модального окна =====
+    document.querySelectorAll('[data-modal-open]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-modal-open');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        });
     });
-  });
 
-  // ===== Закрытие модального окна по кнопке «×» =====
-  document.querySelectorAll('[data-modal-close]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const overlay = btn.closest('.modal-overlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
+    // ===== Закрытие модального окна по кнопке «×» =====
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const overlay = btn.closest('.modal-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        });
     });
-  });
 
-  // ===== Закрытие при клике по фону вне .modal =====
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', (e) => {
-      // Если кликнули именно по темному фону, а не по содержимому .modal
-      if (e.target === overlay) {
-        overlay.style.display = 'none';
-      }
+    // ===== Закрытие при клике по фону вне .modal =====
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = 'none';
+            }
+        });
     });
-  });
 
-  // ===== Подсветка активного пункта навигации =====
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function() {
-      document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-      this.classList.add('active');
-      // При необходимости можно здесь перенаправлять: /* window.location.href = '...'; */
+    // ===== Подсветка активного пункта навигации =====
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+        });
     });
-  });
 
-  // ===== Скрытие модалки после «отправки» формы =====
-  document.querySelectorAll('.modal form').forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const overlay = form.closest('.modal-overlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
-      // Здесь можно добавить AJAX-/fetch-запрос на сервер, чтобы действительно сохранить данные
+    // ===== Скрытие модалки после «отправки» формы =====
+    document.querySelectorAll('.modal form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const overlay = form.closest('.modal-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        });
     });
-  });
-});
 
-document.addEventListener('click', function (e) {
-  document.querySelectorAll('.dropdown-menu').forEach(menu => {
-    if (!menu.parentElement.contains(e.target)) {
-      menu.style.display = 'none';
+    // ===== Сортировка таблицы =====
+    const table = document.querySelector('.data-table');
+    const headers = table.querySelectorAll('th.sortable');
+
+    // Функция для парсинга ячейки в значение для сравнения
+    function parseCell(cellText, columnIndex) {
+        const text = cellText.trim();
+
+        // Колонка "Дата загрузки" (индекс 3)
+        if (columnIndex === 3) {
+            // Ожидаемый формат: DD.MM.YYYY HH:MM
+            const [datePart, timePart] = text.split(' ');
+            const [day, month, year] = datePart.split('.').map(Number);
+            const [hours, minutes] = timePart.split(':').map(Number);
+            return new Date(year, month - 1, day, hours, minutes).getTime();
+        }
+
+        // Остальные колонки — строки
+        return text.toLowerCase();
     }
-  });
 
-  if (e.target.classList.contains('dropdown-toggle')) {
-    const menu = e.target.nextElementSibling;
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
+    headers.forEach((header) => {
+        // Вычисляем реальный индекс колонки в строке <tr>
+        const allTh = Array.from(header.parentElement.children);
+        const columnIndex = allTh.indexOf(header);
+
+        header.addEventListener('click', () => {
+            // Получаем текущее направление сортировки
+            let order = header.getAttribute('data-order') || 'none';
+            // Переключаем方向
+            order = order === 'asc' ? 'desc' : (order === 'desc' ? 'none' : 'asc');
+            header.setAttribute('data-order', order);
+
+            // Сбрасываем значок сортировки у остальных заголовков
+            headers.forEach(h => {
+                if (h !== header) {
+                    h.setAttribute('data-order', 'none');
+                }
+            });
+
+            if (order === 'none') return;
+
+            const tbody = table.querySelector('tbody');
+            // Получаем массив строк
+            const rowsArray = Array.from(tbody.querySelectorAll('tr'));
+
+            rowsArray.sort((rowA, rowB) => {
+                const cellA = rowA.children[columnIndex].textContent;
+                const cellB = rowB.children[columnIndex].textContent;
+
+                const valA = parseCell(cellA, columnIndex);
+                const valB = parseCell(cellB, columnIndex);
+
+                if (valA < valB) return order === 'asc' ? -1 : 1;
+                if (valA > valB) return order === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            // Очищаем тело таблицы и вставляем отсортированные строки
+            tbody.innerHTML = '';
+            rowsArray.forEach(row => tbody.appendChild(row));
+
+            // Применяем фильтры после сортировки
+            applyFilters();
+        });
+    });
+
+    // ===== Фильтрация по типу документа =====
+    const docTypeFilter = document.getElementById('docTypeFilter');
+
+    function applyFilters() {
+        const docTypeValue = docTypeFilter.value;
+
+        document.querySelectorAll('.data-table tbody tr').forEach(row => {
+            const docType = row.querySelector('td:nth-child(5)').textContent.trim();
+
+            const docTypeMatch = docTypeValue === 'all' || docType === docTypeValue;
+
+            row.style.display = docTypeMatch ? '' : 'none';
+        });
+    }
+
+    if (docTypeFilter) {
+        docTypeFilter.addEventListener('change', applyFilters);
+    }
+
+    // ===== Открытие/закрытие dropdown-меню =====
+    document.addEventListener('click', function (e) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            if (!menu.parentElement.contains(e.target)) {
+                menu.style.display = 'none';
+            }
+        });
+
+        if (e.target.classList.contains('dropdown-toggle')) {
+            const menu = e.target.nextElementSibling;
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    });
 });
 
 // ===== Открытие модального окна для редактирования =====
@@ -121,7 +203,6 @@ document.querySelector('.data-table').addEventListener('click', function(e) {
         }
     }
 });
-
 // ===== Обработка отправки формы редактирования =====
 document.querySelector('#modalEditFarm form').addEventListener('submit', function(e) {
     e.preventDefault();

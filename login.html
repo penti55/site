@@ -4,19 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход в систему КФХ</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1e3d59;
+            font-size: 1.5rem;
+        }
+
+        .login-container form label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .login-container form input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .login-container form input:focus {
+            outline: none;
+            border-color: #1e3d59;
+            box-shadow: 0 0 0 3px rgba(30, 61, 89, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3d59, #2d5a87);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 61, 89, 0.3);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: #1e3d59;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <h2>Вход в систему КФХ</h2>
         <form id="loginForm">
-            <label for="username">Логин</label>
+            <label for="username">Почта</label>
             <input type="text" id="username" required>
+            
             <label for="password">Пароль</label>
             <input type="password" id="password" required>
+            
             <button type="submit" class="btn btn-primary">Войти</button>
         </form>
+        
+        <div class="register-link">
+            <p>Нет аккаунта? <a href="registration.html">Зарегистрируйте КФХ</a></p>
+            <p><a href="forgot-password.html">Забыли пароль?</a></p>
+        </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Простая проверка для демонстрации
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                // Перенаправляем на главную страницу
+                window.location.href = 'index.html';
+            } else {
+                alert('Пожалуйста, заполните все поля');
+            }
+        });
+    </script>
 </body>
 </html>

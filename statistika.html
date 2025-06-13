@@ -33,40 +33,41 @@
         <div class="container">
             <!-- === Боковая панель === -->
             <aside class="sidebar">
-				<nav>
-					<!-- ===== Раздел «Основное» ===== -->
-					<div class="nav-section">
-						<div class="nav-title">Основное</div>
-						<a href="index.html"            class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
-						<a href="khozyaystva.html"      class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
-						<a href="produkciya.html"       class="nav-item"><span class="nav-icon">●</span> Продукция</a>
-						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
-					</div>
+                <nav>
+                    <!-- ===== Раздел «Основное» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Основное</div>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
+                        <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+                        <a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                    </div>
 
-					<!-- ===== Раздел «Аналитика» ===== -->
-					<div class="nav-section">
-						<div class="nav-title">Аналитика</div>
-						<a href="statistika.html"       class="nav-item active"><span class="nav-icon">●</span> Статистика</a>
-						<a href="otchety.html"          class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
-						<a href="analitika.html"        class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
-					</div>
+                    <!-- ===== Раздел «Аналитика» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Аналитика</div>
+                        <a href="statistika.html" class="nav-item active"><span class="nav-icon">●</span> Статистика</a>
+                        <a href="otchety.html" class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+                        <a href="analitika.html" class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+                    </div>
 
-					<!-- ===== Раздел «Управление» ===== -->
-					<div class="nav-section">
-						<div class="nav-title">Управление</div>
-						<a href="polzovateli.html"      class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
-						<a href="dokumenty.html"        class="nav-item"><span class="nav-icon">●</span> Документы</a>
-						<a href="klassifikaciya_produkcii.html" class="nav-item">
-							<span class="nav-icon">●</span> Классификация продукции
-						</a>
-						<a href="klassifikaciya_zaprosov.html" class="nav-item">
-							<span class="nav-icon">●</span> Классификация запросов
-						</a>
-						<a href="segments_kfh.html"     class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
-						<a href="specializacii.html"    class="nav-item"><span class="nav-icon">●</span> Специализации</a>
-					</div>
-				</nav>
-			</aside>
+                    <!-- ===== Раздел «Управление» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Управление</div>
+                        <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+						<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
+                        <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
+                        <a href="klassifikaciya_produkcii.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация продукции
+                        </a>
+                        <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация запросов
+                        </a>
+                        <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+                        <a href="specializacii.html" class="nav-item"><span class="nav-icon">●</span> Специализации</a>
+                    </div>
+                </nav>
+            </aside>
 
             <!-- === Основное содержимое === -->
             <main class="main-content">
@@ -85,16 +86,30 @@
                     <div class="table-section">
                         <div class="table-header">
                             <h3 class="table-title">Статистические записи</h3>
+                            <div class="filters">
+                                <select id="periodFilter">
+                                    <option value="all">Все периоды</option>
+                                    <option value="День">День</option>
+                                    <option value="Неделя">Неделя</option>
+                                    <option value="Месяц">Месяц</option>
+                                </select>
+                                <select id="metricTypeFilter">
+                                    <option value="all">Все типы метрик</option>
+                                    <option value="Объём">Объём</option>
+                                    <option value="Выручка">Выручка</option>
+                                    <option value="Прибыль">Прибыль</option>
+                                </select>
+                            </div>
                         </div>
                         <table class="data-table">
                             <thead>
                                 <tr>
                                     <th>ID статистики</th>
                                     <th>Период</th>
-                                    <th>Средняя цена</th>
+                                    <th class="sortable" data-order="none">Средняя цена</th>
                                     <th>Тип метрики</th>
-                                    <th>Значение</th>
-                                    <th>Дата записи</th>
+                                    <th class="sortable" data-order="none">Значение</th>
+                                    <th class="sortable" data-order="none">Дата записи</th>
                                     <th>ID запроса</th>
                                     <th>Действия</th>
                                 </tr>

@@ -406,42 +406,53 @@ body:not(.authenticated) .app {
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 500;
-    white-space: nowrap; /* Чтобы «На проверке» не разбивалось */
+    white-space: nowrap;
 }
 
-.status-active { background: #d4edda; color: #155724; }
-.status-pending { background: #fff3cd; color: #856404; }
-.status-inactive { background: #f8d7da; color: #721c24; }
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffecb5; /* Оранжевая рамка для "На рассмотрении" */
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb; /* Красная рамка для "Отклонено" */
+}
+
+.status-approved {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb; /* Зелёная рамка для "Одобрено" (опционально) */
+}
 
 /* *****************************************
    Модальные окна для добавления записей
    ***************************************** */
 .modal-overlay {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
 }
 
 .modal {
-  max-height: 90vh;      /* не выше 90% высоты экрана */
-  overflow-y: auto;      /* прокрутка только здесь */
-  padding: 2rem;         /* ваши отступы */
-  background: white;
-  border-radius: 8px;
-  width: 500px;
-  max-width: 95%;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 95%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    position: relative;
 }
 
 .modal h3 {
@@ -451,7 +462,7 @@ body:not(.authenticated) .app {
 }
 
 .modal form {
-  padding-right: 0.5rem; /* пространство для скролла */
+    padding-right: 0.5rem;
 }
 
 .modal form label {
@@ -475,76 +486,122 @@ body:not(.authenticated) .app {
 }
 
 .modal .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
+
 /* Кнопка «Добавить хозяйство» фиксируется при прокрутке */
 .table-header {
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #dee2e6;
 }
 
 /* Стили для выпадающего меню */
 .dropdown {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-toggle {
-  background: transparent;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: 0 0.5rem;
-  line-height: 1;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    line-height: 1;
 }
 
 .dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  min-width: 120px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  margin-top: 5px;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 120px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-top: 5px;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block;
+    display: block;
 }
 
 .dropdown-item {
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 0.9rem;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .dropdown-item:hover {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
 
 .dropdown-item.delete {
-  color: #c0392b;
+    color: #c0392b;
+}
+
+/* Стили для сортировки таблицы */
+th.sortable {
+    cursor: pointer;
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+th.sortable::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: #888;
+    opacity: 0.3;
+}
+
+th.sortable[data-order="asc"]::after {
+    border-bottom-color: #888;
+    border-top-color: transparent;
+    opacity: 1;
+}
+
+th.sortable[data-order="desc"]::after {
+    border-top-color: #888;
+    border-bottom-color: transparent;
+    opacity: 1;
+}
+
+/* Стили для фильтров */
+.filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filters select {
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 150px;
 }
 
 /* *****************************************
@@ -561,5 +618,12 @@ body:not(.authenticated) .app {
     }
     .chart-section {
         grid-template-columns: 1fr;
+    }
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filters select {
+        width: 100%;
     }
 }
