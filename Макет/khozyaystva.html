@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хозяйства КФХ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="authenticated">
+    <!-- Обёртка всего приложения -->
+    <div class="app">
+        <!-- Шапка (header) -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">КФХ</div>
+                    <div>
+                        <div class="system-title">Система управления КФХ</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            Информационная система фермерских хозяйств
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                    </div>
+                    <div class="user-avatar">ИИ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Боковое меню (sidebar) -->
+            <aside class="sidebar">
+                <nav>
+                    <!-- ===== Раздел «Основное» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Основное</div>
+                        <a href="index.html"            class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
+                        <a href="khozyaystva.html"      class="nav-item active"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html"       class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                    </div>
+
+                    <!-- ===== Раздел «Аналитика» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Аналитика</div>
+                        <a href="statistika.html"       class="nav-item"><span class="nav-icon">●</span> Статистика</a>
+                        <a href="otchety.html"          class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+                        <a href="analitika.html"        class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+                    </div>
+
+                    <!-- ===== Раздел «Управление» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Управление</div>
+                        <a href="polzovateli.html"      class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+						<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
+                        <a href="dokumenty.html"        class="nav-item"><span class="nav-icon">●</span> Документы</a>
+                        <a href="klassifikaciya_produkcii.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация продукции
+                        </a>
+                        <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация запросов
+                        </a>
+                        <a href="segments_kfh.html"     class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+                        <a href="specializacii.html"    class="nav-item"><span class="nav-icon">●</span> Специализации</a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Основное содержимое (main-content) -->
+            <main class="main-content">
+                <!-- Перенесли кнопку «Добавить хозяйство» сюда, чтобы она оставалась видимой при прокрутке -->
+                <div class="content-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 class="page-title">Хозяйства КФХ</h1>
+                            <p class="page-subtitle">Справочник сельскохозяйственных хозяйств</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="modalAddFarm">
+                            <span>+</span> Добавить хозяйство
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <div class="table-wrapper">
+                        <div class="table-section">
+                            <div class="table-header">
+                                <h3 class="table-title">Список хозяйств</h3>
+                                <!-- Кнопка убрана из таблицы, т.к. перенесли в .content-header -->
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Код КФХ</th>
+                                        <th>Название</th>
+                                        <th>Фамилия</th>
+                                        <th>Имя</th>
+                                        <th>Отчество</th>
+                                        <th>Паспортные данные</th>
+                                        <th>Населённый пункт</th>
+                                        <th>Адрес</th>
+                                        <th>Телефон</th>
+                                        <th>Специализация</th>
+                                        <th>Сегмент</th>
+                                        <th>Действия</th> <!-- Новый столбец -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>КФХ-2024-001</td>
+                                        <td>Агроферма "Рассвет"</td>
+                                        <td>Петров</td>
+                                        <td>Павел</td>
+                                        <td>Иванович</td>
+                                        <td>1234 567890</td>
+                                        <td>с. Красное</td>
+                                        <td>ул. Центральная, 15</td>
+                                        <td>+7 (900) 111-11-11</td>
+                                        <td>Растениеводство</td>
+                                        <td>Малые</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle">⋯</button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item">Редактировать</button>
+                                                    <button class="dropdown-item">Удалить</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Пример ещё одной строки -->
+                                    <tr>
+                                        <td>КФХ-2024-002</td>
+                                        <td>Ферма "Заря"</td>
+                                        <td>Иванова</td>
+                                        <td>Ольга</td>
+                                        <td>Сергеевна</td>
+                                        <td>0987 654321</td>
+                                        <td>п. Лесной</td>
+                                        <td>ул. Лесная, 8</td>
+                                        <td>+7 (900) 222-22-22</td>
+                                        <td>Животноводство</td>
+                                        <td>Средние</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle">⋯</button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item">Редактировать</button>
+                                                    <button class="dropdown-item">Удалить</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- При необходимости добавляй новые строки по аналогии -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div> <!-- /.container -->
+		
+		<!-- Модальное окно для редактирования хозяйства -->
+		<div id="modalEditFarm" class="modal-overlay">
+			<div class="modal">
+				<button class="close-btn" data-modal-close>×</button>
+				<h3>Редактировать хозяйство</h3>
+				<form>
+					<label for="editFarmCode">Код КФХ</label>
+					<input type="text" id="editFarmCode" required readonly>
+
+					<label for="editFarmName">Название</label>
+					<input type="text" id="editFarmName" required>
+
+					<label for="editFarmLastName">Фамилия владельца</label>
+					<input type="text" id="editFarmLastName" required>
+
+					<label for="editFarmFirstName">Имя владельца</label>
+					<input type="text" id="editFarmFirstName" required>
+
+					<label for="editFarmPatronymic">Отчество владельца</label>
+					<input type="text" id="editFarmPatronymic">
+
+					<label for="editPassport">Паспортные данные</label>
+					<input type="text" id="editPassport" placeholder="Серия и номер" required>
+
+					<label for="editSnils">СНИЛС</label>
+					<input type="text" id="editSnils" placeholder="XXX-XXX-XXX YY" required>
+
+					<label for="editLocation">Населённый пункт</label>
+					<input type="text" id="editLocation" required>
+
+					<label for="editAddress">Адрес</label>
+					<input type="text" id="editAddress" required>
+
+					<label for="editPhone">Телефон</label>
+					<input type="tel" id="editPhone" placeholder="+7 (___) ___-__-__" required>
+
+					<label for="editSpecializationSelect">Специализация</label>
+					<select id="editSpecializationSelect" required>
+						<option value="">— Выберите специализацию —</option>
+						<option value="1">Растениеводство</option>
+						<option value="2">Животноводство</option>
+						<option value="3">Птицеводство</option>
+					</select>
+
+					<label for="editSegmentSelect">Сегмент</label>
+					<select id="editSegmentSelect" required>
+						<option value="">— Выберите сегмент —</option>
+						<option value="1">Малые</option>
+						<option value="2">Средние</option>
+						<option value="3">Крупные</option>
+					</select>
+
+					<button type="submit" class="btn btn-primary">Сохранить</button>
+				</form>
+			</div>
+		</div>
+        <!-- Модальное окно для добавления хозяйства -->
+        <div id="modalAddFarm" class="modal-overlay">
+            <div class="modal">
+                <button class="close-btn" data-modal-close>&times;</button>
+                <h3>Добавить хозяйство</h3>
+                <form>
+                    <label for="farmCode">Код КФХ</label>
+                    <input type="text" id="farmCode" required>
+
+                    <label for="farmName">Название</label>
+                    <input type="text" id="farmName" required>
+
+                    <label for="farmLastName">Фамилия владельца</label>
+                    <input type="text" id="farmLastName" required>
+
+                    <label for="farmFirstName">Имя владельца</label>
+                    <input type="text" id="farmFirstName" required>
+
+                    <label for="farmPatronymic">Отчество владельца</label>
+                    <input type="text" id="farmPatronymic">
+
+                    <label for="passport">Паспортные данные</label>
+                    <input type="text" id="passport" placeholder="Серия и номер" required>
+
+                    <label for="snils">СНИЛС</label>
+                    <input type="text" id="snils" placeholder="XXX-XXX-XXX YY" required>
+
+                    <label for="location">Населённый пункт</label>
+                    <input type="text" id="location" required>
+
+                    <label for="address">Адрес</label>
+                    <input type="text" id="address" required>
+
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+
+                    <label for="specializationSelect">Специализация</label>
+                    <select id="specializationSelect" required>
+                        <option value="">— Выберите специализацию —</option>
+                        <option value="1">Растениеводство</option>
+                        <option value="2">Животноводство</option>
+                        <option value="3">Птицеводство</option>
+                    </select>
+
+                    <label for="segmentSelect">Сегмент</label>
+                    <select id="segmentSelect" required>
+                        <option value="">— Выберите сегмент —</option>
+                        <option value="1">Малые</option>
+                        <option value="2">Средние</option>
+                        <option value="3">Крупные</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div> <!-- /.app -->
+
+    <!-- Подключаем скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>

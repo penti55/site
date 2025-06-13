@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Специализации</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="authenticated">
+    <div class="app">
+        <!-- === Шапка === -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">КФХ</div>
+                    <div>
+                        <div class="system-title">Система управления КФХ</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            Информационная система фермерских хозяйств
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                    </div>
+                    <div class="user-avatar">ИИ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- === Боковая панель === -->
+            <aside class="sidebar">
+				<nav>
+					<!-- ===== Раздел «Основное» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Основное</div>
+						<a href="index.html"            class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
+						<a href="khozyaystva.html"      class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+						<a href="produkciya.html"       class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+					</div>
+
+					<!-- ===== Раздел «Аналитика» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Аналитика</div>
+						<a href="statistika.html"       class="nav-item"><span class="nav-icon">●</span> Статистика</a>
+						<a href="otchety.html"          class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+						<a href="analitika.html"        class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+					</div>
+
+					<!-- ===== Раздел «Управление» ===== -->
+					<div class="nav-section">
+						<div class="nav-title">Управление</div>
+						<a href="polzovateli.html"      class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+						<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
+						<a href="dokumenty.html"        class="nav-item"><span class="nav-icon">●</span> Документы</a>
+						<a href="klassifikaciya_produkcii.html" class="nav-item">
+							<span class="nav-icon">●</span> Классификация продукции
+						</a>
+						<a href="klassifikaciya_zaprosov.html" class="nav-item">
+							<span class="nav-icon">●</span> Классификация запросов
+						</a>
+						<a href="segments_kfh.html"     class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+						<a href="specializacii.html"    class="nav-item active"><span class="nav-icon">●</span> Специализации</a>
+					</div>
+				</nav>
+			</aside>
+
+            <!-- === Основное содержимое === -->
+            <main class="main-content">
+                <div class="content-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 class="page-title">Специализации</h1>
+                            <p class="page-subtitle">Справочник направлений деятельности КФХ</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="modalAddSpecialization">
+                            <span>+</span> Добавить специализацию
+                        </button>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <div class="table-section">
+                        <div class="table-header">
+                            <h3 class="table-title">Список специализаций</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID специализации</th>
+                                    <th>Название специализации</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1001</td>
+                                    <td>Растениеводство</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1002</td>
+                                    <td>Животноводство</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1003</td>
+                                    <td>Птицеводство</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- === Модальное окно «Добавить специализацию» === -->
+        <div id="modalAddSpecialization" class="modal-overlay">
+            <div class="modal">
+                <button class="close-btn" data-modal-close>×</button>
+                <h3>Добавить специализацию</h3>
+                <form>
+                    <label for="specializationName">Название специализации</label>
+                    <input type="text" id="specializationName" required>
+
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

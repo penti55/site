@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукция и предложения</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="authenticated">
+    <div class="app">
+        <!-- Заголовок -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">КФХ</div>
+                    <div>
+                        <div class="system-title">Система управления КФХ</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            Информационная система фермерских хозяйств
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                    </div>
+                    <div class="user-avatar">ИИ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Сайдбар -->
+            <aside class="sidebar">
+                <nav>
+                    <!-- ===== Раздел «Основное» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Основное</div>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Главная страница</a>
+                        <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html" class="nav-item active"><span class="nav-icon">●</span> Продукция</a>
+						<a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                    </div>
+
+                    <!-- ===== Раздел «Аналитика» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Аналитика</div>
+                        <a href="statistika.html" class="nav-item"><span class="nav-icon">●</span> Статистика</a>
+                        <a href="otchety.html" class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+                        <a href="analitika.html" class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+                    </div>
+
+                    <!-- ===== Раздел «Управление» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Управление</div>
+                        <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+						<a href="zayavki_kfh.html" class="nav-item"><span class="nav-icon">●</span> Заявки КФХ</a>
+                        <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
+                        <a href="klassifikaciya_produkcii.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация продукции
+                        </a>
+                        <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация запросов
+                        </a>
+                        <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+                        <a href="specializacii.html" class="nav-item"><span class="nav-icon">●</span> Специализации</a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Основное содержимое -->
+            <main class="main-content">
+                <div class="content-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 class="page-title">Продукция и предложения</h1>
+                            <p class="page-subtitle">Управление товарными позициями</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="modalAddProduct">
+                            <span>+</span> Добавить товар
+                        </button>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <div class="table-section">
+                        <div class="table-header">
+                            <h3 class="table-title">Каталог продукции</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Название</th>
+                                    <th>Ед. изм.</th>
+                                    <th>Цена</th>
+                                    <th>Количество</th>
+                                    <th>Тип</th>
+                                    <th>Код КФХ</th>
+                                    <th>ID классификации</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1001</td>
+                                    <td>Пшеница</td>
+                                    <td>кг</td>
+                                    <td>25.50</td>
+                                    <td>1500</td>
+                                    <td>Сырье</td>
+                                    <td>КФХ-2024-001</td>
+                                    <td>701</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1002</td>
+                                    <td>Молоко</td>
+                                    <td>л</td>
+                                    <td>50.00</td>
+                                    <td>2000</td>
+                                    <td>Готовая продукция</td>
+                                    <td>КФХ-2024-004</td>
+                                    <td>702</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1003</td>
+                                    <td>Яйца</td>
+                                    <td>шт</td>
+                                    <td>5.00</td>
+                                    <td>5000</td>
+                                    <td>Готовая продукция</td>
+                                    <td>КФХ-2024-005</td>
+                                    <td>703</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle">⋯</button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item">Редактировать</button>
+                                                <button class="dropdown-item">Удалить</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Модальное окно «Добавить товар» -->
+        <div id="modalAddProduct" class="modal-overlay">
+            <div class="modal">
+                <button class="close-btn" data-modal-close>×</button>
+                <h3>Добавить товар</h3>
+                <form>
+                    <label for="prodName">Название товара</label>
+                    <input type="text" id="prodName" required>
+
+                    <label for="unit">Единица измерения</label>
+                    <input type="text" id="unit" required>
+
+                    <label for="price">Цена</label>
+                    <input type="number" step="0.01" id="price" required>
+
+                    <label for="quantity">Количество</label>
+                    <input type="number" id="quantity" required>
+
+                    <label for="prodType">Тип</label>
+                    <select id="prodType" required>
+                        <option value="">— Выберите тип —</option>
+                        <option value="Сырье">Сырье</option>
+                        <option value="Полуфабрикат">Полуфабрикат</option>
+                        <option value="Готовая продукция">Готовая продукция</option>
+                    </select>
+
+                    <label for="farmFk">Код КФХ</label>
+                    <select id="farmFk" required>
+                        <option value="">— Выберите КФХ —</option>
+                        <option value="КФХ-2024-001">КФХ-2024-001</option>
+                        <option value="КФХ-2024-004">КФХ-2024-004</option>
+                        <option value="КФХ-2024-005">КФХ-2024-005</option>
+                    </select>
+
+                    <label for="classFk">ID классификации</label>
+                    <select id="classFk" required>
+                        <option value="">— Выберите классификацию —</option>
+                        <option value="701">701 (Зерновые)</option>
+                        <option value="702">702 (Молочная продукция)</option>
+                        <option value="703">703 (Птицеводство)</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

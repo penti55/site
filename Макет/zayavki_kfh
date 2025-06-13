@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявки на регистрацию КФХ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="authenticated">
+    <!-- Обёртка всего приложения -->
+    <div class="app">
+        <!-- Шапка (header) -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">КФХ</div>
+                    <div>
+                        <div class="system-title">Система управления КФХ</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            Информационная система фермерских хозяйств
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 0.9rem;">Иванов И.И.</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Администратор</div>
+                    </div>
+                    <div class="user-avatar">ИИ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Боковое меню (sidebar) -->
+            <aside class="sidebar">
+                <nav>
+                    <!-- ===== Раздел «Основное» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Основное</div>
+                        <a href="index.html" class="nav-item"><span class="nav-icon">●</span> Панель управления</a>
+                        <a href="khozyaystva.html" class="nav-item"><span class="nav-icon">●</span> Хозяйства КФХ</a>
+                        <a href="produkciya.html" class="nav-item"><span class="nav-icon">●</span> Продукция</a>
+                        <a href="zaprosy.html" class="nav-item"><span class="nav-icon">●</span> Запросы</a>
+                    </div>
+
+                    <!-- ===== Раздел «Аналитика» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Аналитика</div>
+                        <a href="statistika.html" class="nav-item"><span class="nav-icon">●</span> Статистика</a>
+                        <a href="otchety.html" class="nav-item"><span class="nav-icon">●</span> Отчёты</a>
+                        <a href="analitika.html" class="nav-item"><span class="nav-icon">●</span> Аналитика</a>
+                    </div>
+
+                    <!-- ===== Раздел «Управление» ===== -->
+                    <div class="nav-section">
+                        <div class="nav-title">Управление</div>
+                        <a href="polzovateli.html" class="nav-item"><span class="nav-icon">●</span> Пользователи</a>
+                        <a href="zayavki_kfh.html" class="nav-item active"><span class="nav-icon">●</span> Заявки КФХ</a>
+                        <a href="dokumenty.html" class="nav-item"><span class="nav-icon">●</span> Документы</a>
+                        <a href="klassifikaciya_produkcii.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация продукции
+                        </a>
+                        <a href="klassifikaciya_zaprosov.html" class="nav-item">
+                            <span class="nav-icon">●</span> Классификация запросов
+                        </a>
+                        <a href="segments_kfh.html" class="nav-item"><span class="nav-icon">●</span> Сегменты КФХ</a>
+                        <a href="specializacii.html" class="nav-item"><span class="nav-icon">●</span> Специализации</a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Основное содержимое (main-content) -->
+            <main class="main-content">
+                <div class="content-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 class="page-title">Заявки на регистрацию КФХ</h1>
+                            <p class="page-subtitle">Модерация и управление заявками фермерских хозяйств</p>
+                        </div>
+                        <div class="header-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">На рассмотрении</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <!-- Фильтры -->
+                    <div class="filters-panel">
+                        <div class="filters">
+                            <select id="statusFilter">
+                                <option value="all">Все статусы</option>
+                                <option value="pending">На рассмотрении</option>
+                                <option value="approved">Одобрено</option>
+                                <option value="rejected">Отклонено</option>
+                            </select>
+                            <select id="regionFilter">
+                                <option value="all">Все регионы</option>
+                                <option value="moscow">Московская область</option>
+                                <option value="spb">Ленинградская область</option>
+                                <option value="krasnodar">Краснодарский край</option>
+                                <option value="rostov">Ростовская область</option>
+                            </select>
+                            <select id="specializationFilter">
+                                <option value="all">Все специализации</option>
+                                <option value="crop">Растениеводство</option>
+                                <option value="livestock">Животноводство</option>
+                                <option value="poultry">Птицеводство</option>
+                                <option value="mixed">Смешанное</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <div class="table-section">
+                            <div class="table-header">
+                                <h3 class="table-title">Список заявок</h3>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th class="sortable">№ Заявки</th>
+                                        <th class="sortable">Дата подачи</th>
+                                        <th>Название КФХ</th>
+                                        <th>ФИО заявителя</th>
+                                        <th>Регион</th>
+                                        <th>Специализация</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-status="pending" data-region="moscow" data-specialization="crop">
+                                        <td>РЕГ-20240001</td>
+                                        <td>05.06.2025 14:30</td>
+                                        <td>КФХ "Зелёные просторы"</td>
+                                        <td>Сидоров Алексей Петрович</td>
+                                        <td>Московская область</td>
+                                        <td>Растениеводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240001')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="krasnodar" data-specialization="livestock">
+                                        <td>РЕГ-20240002</td>
+                                        <td>04.06.2025 11:15</td>
+                                        <td>Ферма "Рассвет"</td>
+                                        <td>Козлова Марина Владимировна</td>
+                                        <td>Краснодарский край</td>
+                                        <td>Животноводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240002')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="approved" data-region="spb" data-specialization="poultry">
+                                        <td>РЕГ-20240003</td>
+                                        <td>03.06.2025 16:45</td>
+                                        <td>КФХ "Птичий двор"</td>
+                                        <td>Петров Василий Иванович</td>
+                                        <td>Ленинградская область</td>
+                                        <td>Птицеводство</td>
+                                        <td><span class="status-badge status-approved">Одобрено</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240003')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="rostov" data-specialization="mixed">
+                                        <td>РЕГ-20240004</td>
+                                        <td>02.06.2025 09:20</td>
+                                        <td>Агрокомплекс "Донской"</td>
+                                        <td>Новиков Дмитрий Сергеевич</td>
+                                        <td>Ростовская область</td>
+                                        <td>Смешанное</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240004')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="rejected" data-region="moscow" data-specialization="crop">
+                                        <td>РЕГ-20240005</td>
+                                        <td>01.06.2025 13:10</td>
+                                        <td>КФХ "Золотые колосья"</td>
+                                        <td>Смирнова Елена Александровна</td>
+                                        <td>Московская область</td>
+                                        <td>Растениеводство</td>
+                                        <td><span class="status-badge status-rejected">Отклонено</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240005')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="krasnodar" data-specialization="crop">
+                                        <td>РЕГ-20240006</td>
+                                        <td>31.05.2025 15:30</td>
+                                        <td>Ферма "Южные поля"</td>
+                                        <td>Волков Игорь Павлович</td>
+                                        <td>Краснодарский край</td>
+                                        <td>Растениеводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240006')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="approved" data-region="spb" data-specialization="livestock">
+                                        <td>РЕГ-20240007</td>
+                                        <td>30.05.2025 10:45</td>
+                                        <td>КФХ "Северная буренка"</td>
+                                        <td>Орлова Анна Николаевна</td>
+                                        <td>Ленинградская область</td>
+                                        <td>Животноводство</td>
+                                        <td><span class="status-badge status-approved">Одобрено</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240007')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="rostov" data-specialization="poultry">
+                                        <td>РЕГ-20240008</td>
+                                        <td>29.05.2025 12:15</td>
+                                        <td>Птицефабрика "Донская"</td>
+                                        <td>Кузнецов Антон Викторович</td>
+                                        <td>Ростовская область</td>
+                                        <td>Птицеводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240008')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="moscow" data-specialization="mixed">
+                                        <td>РЕГ-20240009</td>
+                                        <td>28.05.2025 14:00</td>
+                                        <td>КФХ "Многопрофильное"</td>
+                                        <td>Соколов Максим Евгеньевич</td>
+                                        <td>Московская область</td>
+                                        <td>Смешанное</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240009')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="krasnodar" data-specialization="livestock">
+                                        <td>РЕГ-20240010</td>
+                                        <td>27.05.2025 11:30</td>
+                                        <td>Ферма "Кубанская мечта"</td>
+                                        <td>Романова Светлана Дмитриевна</td>
+                                        <td>Краснодарский край</td>
+                                        <td>Животноводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240010')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="spb" data-specialization="crop">
+                                        <td>РЕГ-20240011</td>
+                                        <td>26.05.2025 16:20</td>
+                                        <td>КФХ "Лесное хозяйство"</td>
+                                        <td>Федоров Олег Станиславович</td>
+                                        <td>Ленинградская область</td>
+                                        <td>Растениеводство</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240011')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="pending" data-region="rostov" data-specialization="mixed">
+                                        <td>РЕГ-20240012</td>
+                                        <td>25.05.2025 08:45</td>
+                                        <td>Агрофирма "Степь"</td>
+                                        <td>Морозов Артем Алексеевич</td>
+                                        <td>Ростовская область</td>
+                                        <td>Смешанное</td>
+                                        <td><span class="status-badge status-pending">На рассмотрении</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-info" onclick="viewApplication('РЕГ-20240012')">
+                                                    <span>👁</span> Просмотр
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
